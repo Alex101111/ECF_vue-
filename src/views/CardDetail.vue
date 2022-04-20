@@ -1,0 +1,125 @@
+<template>
+  <body class="right-sidebar is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header Wrapper -->
+				<div id="header-wrapper">
+					<div class="container">
+
+						<!-- Header -->
+							<header id="header">
+								<div class="inner">
+
+									<!-- Logo -->
+										<h1><a href="index.html" id="logo">Magic</a></h1>
+
+									<!-- Nav -->
+										<nav id="nav">
+											<ul>
+												<li ><a href="index.html">Home</a></li>
+												<li class="current_page_item"><a href="collection.html">Ma Collection</a></li>
+											</ul>
+										</nav>
+
+								</div>
+							</header>
+
+					</div>
+				</div>
+
+			<!-- Main Wrapper -->
+				<div id="main-wrapper">
+					<div class="wrapper style2">
+						<div class="inner">
+							<div class="container">
+								<div class="row">
+									<div class="col-8 col-12-medium">
+										<div id="content">
+
+											<!-- Content -->
+
+												<article>
+													<header class="major">
+														<h2>{{card.name}}</h2>
+														<p>{{card.artist}}</p>
+													</header>
+
+													<span class="image featured">
+														<img :src="card.imageUrl" />
+													</span>
+
+													<p>{{card.text}}</p>
+												</article>
+
+										</div>
+									</div>
+									<div class="col-4 col-12-medium">
+										<div id="sidebar">
+
+											<!-- Sidebar -->
+
+												<section>
+													<header class="major">
+														<h2>Infos</h2>
+													</header>
+													<p>set name: <b>{{card.setName}}</b></p>
+													<p >rarity:  <b>{{card.rarity}}</b></p>
+													<p >toughness:  <b>{{card.toughness}}</b></p>
+
+													<span class="button alt icon ">
+														{{card.power}}
+														<i class="fa-solid fa-fire-flame-curved"></i>
+														<i class="fa-solid fa-fire-flame-curved"></i>
+														<i class="fa-solid fa-fire-flame-curved"></i>
+													</span>
+												</section>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+			<!-- Footer Wrapper -->
+				<div id="footer-wrapper">
+					<footer id="footer" class="container">
+						<div class="row">
+							<div class="col-12">
+								<div id="copyright">
+									<ul class="menu">
+										<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</footer>
+				</div>
+
+		</div>
+
+	</body>
+</template>
+
+<script>
+import axios from 'axios'
+export default {
+name:'cardDetail',
+data:()=>({
+    card:[]
+}),
+async created()
+{
+    const {cardId}= this.$route.params
+    const CardsApi = "https://api.magicthegathering.io/v1/cards/?id="+cardId
+    const oneCard = await axios.get(CardsApi)
+    this.oneCard = oneCard.data
+
+}
+}
+</script>
+
+<style>
+@import "../assets/css/card-list.css"
+</style>
