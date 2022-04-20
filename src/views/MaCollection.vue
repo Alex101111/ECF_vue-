@@ -72,7 +72,7 @@ props:[
 
       cards:[]
   }),
-  methodes:{
+  methods:{
 checkThisCard(id_card){
     this.$router.push({name:"CardDetail", params:{ cardId: id_card}})
 },
